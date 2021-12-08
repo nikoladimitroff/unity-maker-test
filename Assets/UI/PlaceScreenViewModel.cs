@@ -53,24 +53,24 @@ public class PlaceScreenViewModel : UIViewModel
         }
     }
    
-   private void OnDisable()
-   {
-       NextObjectToSpawn = null;
-       foreach (Transform child in SavedObjectScrollList.transform)
-       {
-           Destroy(child.gameObject);
-       }
-   }
+    private void OnDisable()
+    {
+        NextObjectToSpawn = null;
+        foreach (Transform child in SavedObjectScrollList.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
    
-   // Update is called once per frame
-   void Update()
-   {
-       if (NextObjectToSpawn == null || !Input.GetMouseButtonDown(0))
-       {
+    // Update is called once per frame
+    void Update()
+    {
+        if (NextObjectToSpawn == null || !Input.GetMouseButtonDown(0))
+        {
             return;
-       }
-       RaycastHit hitInfo;
-       Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
+        RaycastHit hitInfo;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (!Physics.Raycast(ray, out hitInfo))
         {
@@ -78,18 +78,18 @@ public class PlaceScreenViewModel : UIViewModel
         }
         if (!hitInfo.collider.gameObject.CompareTag("Floor"))
         {
-             return;
+                return;
         }
         GameObject toSpawn = PrefabPairs.Find(pair => pair.Type == NextObjectToSpawn.Type).Prefab;
         GameObject spawnedPrefab = Instantiate(toSpawn, hitInfo.point, Quaternion.identity, hitInfo.collider.gameObject.transform);
         spawnedPrefab.GetComponent<Renderer>().material.SetColor("_Color", NextObjectToSpawn.ColorToUse);
-       if (NextObjectToSpawn.IsExploding)
-       {
-           spawnedPrefab.GetComponent<Clickable>().ClickableFlags.Add(Clickable.ClickableBehaviourType.Explodable);
-       }
-       if (NextObjectToSpawn.IsScorable)
-       {
-           spawnedPrefab.GetComponent<Clickable>().ClickableFlags.Add(Clickable.ClickableBehaviourType.Scorable);
-       }
-   }
+        if (NextObjectToSpawn.IsExploding)
+        {
+            spawnedPrefab.GetComponent<Clickable>().ClickableFlags.Add(Clickable.ClickableBehaviourType.Explodable);
+        }
+        if (NextObjectToSpawn.IsScorable)
+        {
+            spawnedPrefab.GetComponent<Clickable>().ClickableFlags.Add(Clickable.ClickableBehaviourType.Scorable);
+        }
+    }
 }

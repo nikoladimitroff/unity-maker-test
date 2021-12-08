@@ -6,7 +6,6 @@ using UnityEngine;
 public class GlobalSettings : MonoBehaviour
 {
     [Header("Explosion settings")]
-    public GameObject ExplosionVFX;
     public AudioClip ExplosionSFX;
 
     [Header("Score settings")]

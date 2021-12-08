@@ -63,7 +63,6 @@ public class Clickable : MonoBehaviour
             audioSource.enabled = true;
             audioSource.PlayOneShot(SettingsInstance.ExplosionSFX);
         }
-        Instantiate(SettingsInstance.ExplosionVFX, this.transform);
         Destroy(this.gameObject, 0.75f); // todo: get rid of the magic number
     }
     private void Score()
