@@ -7,7 +7,7 @@ public class AppModeManager : MonoBehaviour
 {
     // This might need to be converted to a Dictionary but given we only have 3 screens, a list is just as good
     public List<GameObject> ScreenList;
-    private ScreenType ActiveScreen;
+    public ScreenType ActiveScreen { get; private set; }
 
     private void OnValidate()
     {
@@ -28,7 +28,6 @@ public class AppModeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void ActivateScreen(string nextScreenName)
